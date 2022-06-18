@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Temperature Converter</title>
+	<meta charset="UTF-8" />
+	<link href="src/styles.css" rel="stylesheet">
+	<!-- <script src="src/index.js">
+	</script>  -->
+</head>
+
+<body>
+	<div id="container" class="container">
+		<h1>Convert Temperature</h1>
+		 <form id="form" onsubmit="convertTemp(); return false">
+			<label for="number">
+				<input type="number" id="num"/>
+				
+				<select id="temp" name="tempselect">
+							<option value="Celsius">Celsius</option>
+							<option value="Fahrenheit">Fahrenheit</option>
+				</select><br/>
+				<input type="submit" id="submit">
+				<div class="final"></div>
+		 </form>
+		 
+	</div>
+
+	<script>
+	const convertTemp = () => {
+  const number = document.querySelector("#num").value;
+	const temperature = document.querySelector("#temp");
+
+	const temp = temperature.options[temperature.selectedIndex].value;
+  const final = document.querySelector(".final");
+  console.log(number);
+  console.log(temp);
+
+  const celToFah = (celsius) => {
+    let fahrenheit;
+    fahrenheit = (celsius * 9/5) + 32;
+    return fahrenheit;
+  };
+
+  const fahToCel = (fahrenheit) => {
+    let celsius;
+    celsius = (fahrenheit - 32) * 5/9;
+    return celsius;
+  };
+
+  let result;
+
+  if (temp == "Celsius") {
+    result = celToFah(number);
+    final.innerHTML = `${result} °F`;
+  } else {
+    result = fahToCel(number);
+    final.innerHTML  = `${result} °C`;
+  }
+};
+	</script> 
+</body>
+
+</html>
